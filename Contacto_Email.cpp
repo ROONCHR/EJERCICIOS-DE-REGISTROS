@@ -60,8 +60,6 @@ void agregar_contacto(contactoEmail CE[],int &i){
 	cout<<endl;
 }	
 
-
-
 void mostra_general(contactoEmail CE[],int cnt_cont){
 	cout<<"-------LISTA GENERAL DE CONTACTOS-----"<<endl;
 	int num_contact;
@@ -89,6 +87,48 @@ void mostra_general(contactoEmail CE[],int cnt_cont){
 	system("PAUSE");
 	cout<<endl;
 }
+//void eliminar_contacto(){
+//	cout<<"------ELIMINAR CONTACTO------"<<endl;
+//	int resp;
+//	cout<<"Introduzca el nombre del contacto a eliminar: ";
+	
+	
+//}
+void mostrar_orden_gmail(contactoEmail CE[],int cnt_cont){
+	cout<<"-------LISTA GENERAL DE CONTACTOS-----"<<endl;
+	if(cnt_cont==0){
+		cout<<endl<<"No tiene ningun contacto, agrege alguno."<<endl;
+	}
+	int i,j,m,l,k,n;
+	for(i=0;i<cnt_cont-1;i++){
+		for(j=0;CE[i].email[j]!='@';j++){
+				
+			}
+		for(l=i+1;l<cnt_cont;l++){
+		
+			for(k=0;CE[l].email[k]!='@';k++){
+				
+			}
+			
+			if(CE[i].email[j+1]>CE[l].email[k+1]){
+				string aux;
+				aux=CE[i].email;
+				CE[i].email=CE[l].email;
+				CE[l].email=aux;
+			
+				
+				
+			}
+		}
+	}
+		
+	
+	for(m=0; m<cnt_cont;m++ ){
+	cout<<"email : "<<m+1<<": "<<CE[m].email<<endl;
+	}
+	
+	
+}
 
 int main(){
 	char resp;
@@ -110,9 +150,9 @@ int main(){
 	if(resp=='c'){
 		mostra_general(CE,cant_contacs);
 	}
-////	if(resp=='d'){
-//		mostrar_orden_gmail(CE,cant_contacs);
-//	}
+	if(resp=='d'){
+		mostrar_orden_gmail(CE,cant_contacs);
+	}
 	
 	}while(resp!='e');
 	return 0;
