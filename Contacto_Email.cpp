@@ -11,85 +11,108 @@
 //mismo.
 #include <iostream>
 #include <string>
+#include <string.h>
 using namespace std;
 struct contactoEmail{
-		char nombre[20];
-		char sexo[10];
-		char edad[3];
-		char telefono[15];
-		char email[50];
-		char nacionalidad[30];
+		string nombre;
+		string sexo;
+		string edad;
+		string telefono;
+		string email;
+		string nacionalidad;
 	};
+
+
 void agregar_contacto(contactoEmail CE[],int &i){
 	cout<<"-----AGREGAR CONTACTO-----"<<endl;
-	int resp=1;
+	int resp=1,x=0;
 	while(resp==1&&i<50){
 	
-	fflush(stdin);
-	cout<<"NOMBRE: ";
-	cin.getline(CE[i].nombre,20,'\n');
-	cout<<"SEXO: ";
-	cin.getline(CE[i].sexo,10,'\n');
-	fflush(stdin);
-	cout<<"EDAD: ";
-	cin.getline(CE[i].edad,3,'\n');
-	cout<<"TELEFONO: ";
-	cin.getline(CE[i].telefono,15,'\n');
-	fflush(stdin);
-	cout<<"EMAIL: ";
-	cin.getline(CE[i].email,50,'\n');
-	cout<<"NACIONALIDAD: ";
-	fflush(stdin);
-	cin.getline(CE[i].nacionalidad,30,'\n');
-	
-	i++;
-	
-	cout<<endl<<"---------------------"<<endl;
-	cout<<"Cantidad de contactos: "<<i<<endl;
-	cout<<"-----------------------"<<endl<<"seguir Ingresando?(SI=1 y NO=0): ";
-	cin>>resp;
+		fflush(stdin);
+		cout<<"NOMBRE: ";
+		getline(cin, CE[i].nombre);
+		fflush(stdin);
+		cout<<"SEXO: ";
+		getline(cin, CE[i].sexo);
+		fflush(stdin);
+		cout<<"EDAD: ";
+		getline(cin, CE[i].edad);
+		fflush(stdin);
+		cout<<"TELEFONO: ";
+		getline(cin, CE[i].telefono);
+		fflush(stdin);
+		cout<<"EMAIL: ";
+		getline(cin, CE[i].email);
+		fflush(stdin);
+		cout<<"NACIONALIDAD: ";
+		fflush(stdin);
+		getline(cin, CE[i].nacionalidad);
+		
+		i++;
+		
+		cout<<endl<<"---------------------"<<endl;
+		cout<<"Cantidad de contactos: "<<i<<endl;
+		cout<<"-----------------------"<<endl<<"seguir Ingresando?(SI=1 y NO=0): ";
+		cin>>resp;
 	}
 	cout<<endl<<"saliendo..."<<endl;
 	system("PAUSE");
 	cout<<endl;
 }	
 
-void eliminar_contacto(){
-	
-	
+
+
+void mostra_general(contactoEmail CE[],int cnt_cont){
+	cout<<"-------LISTA GENERAL DE CONTACTOS-----"<<endl;
+	int num_contact;
+	for(int i=0; i<cnt_cont;i++ ){
+	cout<<"Contacto "<<i+1<<": "<<CE[i].nombre<<endl;
+	}
+	cout<<"PARA MAS INFORMACION INGRESE EL NUMERO DE CONTACTO:";
+	cin>>num_contact;
+	int i=1;
+	while(true){
+		if(i==num_contact){
+			cout<<"-----CONTACTO "<<num_contact<<" ------"<<endl;
+			cout<<"Nombre: "<<CE[i-1].nombre<<endl;
+			cout<<"Sexo: "<<CE[i-1].sexo<<endl;
+			cout<<"Edad: "<<CE[i-1].edad<<endl;
+			cout<<"Telefono: "<<CE[i-1].telefono<<endl;
+			cout<<"Email: "<<CE[i-1].email<<endl;
+			cout<<"Nacionalidad: "<<CE[i-1].nacionalidad<<endl;
+			
+			break ;
+		}
+		i++;
+	}
+	cout<<endl<<"saliendo..."<<endl;
+	system("PAUSE");
+	cout<<endl;
 }
 
-void mostra_general(){
-	
-	
-}
-
-void mostrar_orden_gemail(){
-	
-	
-}
 int main(){
 	char resp;
 	int cant_contacs=0;
 	contactoEmail CE[50];
 	do{
-
+	fflush(stdin);
 	cout<<"----------CONTACTOS EMAIL------------"<<endl;
-	cout<<"QUE DESEA HACER?"<<endl<<"a) Agregar un contacto"<<endl<<"b) Eliminar un contacto"<<endl<<"c) Mostrar listado general de contactos registrados hasta ese momento."<<endl;
-	cout<<"d) Mostrar listado de contactos existentes, ordenado por servidor de correo de las cuentas"<<endl<<"e) Salir del programa"<<endl<<"resp: ";
+	cout<<"QUE DESEA HACER?"<<endl<<"a) Agregar un contacto"<<endl<<"b) Eliminar un contacto"<<endl<<"c) Abrir listado general de contactos registrados hasta ese momento."<<endl;
+	cout<<"d)Abrir listado de contactos existentes, ordenado por servidor de correo de las cuentas"<<endl<<"e) Salir del programa"<<endl<<"resp: ";
+
 	cin>>resp;	
 	if(resp=='a'){
 		agregar_contacto(CE,cant_contacs);
 	}
-	if(resp=='b'){
-		eliminar_contacto();
-	}
+	//if(resp=='b'){
+	//	eliminar_contacto();
+//	}
 	if(resp=='c'){
-		mostra_general();
+		mostra_general(CE,cant_contacs);
 	}
-	if(resp=='d'){
-		mostrar_orden_gemail();
-	}
+////	if(resp=='d'){
+//		mostrar_orden_gmail(CE,cant_contacs);
+//	}
 	
 	}while(resp!='e');
 	return 0;
